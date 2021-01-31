@@ -44,6 +44,17 @@
   - [Step Functions](3-aws-serverless/stepfunctions.md)
   - [AppSync](3-aws-serverless/appsync.md)
 
+- Advanced Security
+    - [STS: Security Token Service](4-aws-security/sts.md)
+    - [Advanced IAM](4-aws-security/advanced-iam.md)
+    - [Active Directories](4-aws-security/active-directories.md)
+    - [Encryption](4-aws-security/encryption.md)
+    - [KMS: Key Management Service](4-aws-security/kms.md)
+    - [S3 Advanced Security](4-aws-security/s3-advanced-security.md)
+    - [SSM Parameter Store](4-aws-security/ssm.md)
+    - [Secrets Manager](4-aws-security/secrets-manager.md)
+    - [CloudWatch Logs Encryption, CodeBuild Security](4-aws-security/other.md)
+
 - Docker based AWS services
   - ECS: Elastic Container Service
   - Elastic Container Registry
