@@ -18,6 +18,7 @@
     - [S3 Buckets](1-aws-fundamentals/s3.md)
 
 - AWS Deep Dive
+    - [Advanced S3](2-aws-deep-dive/advanced-s3.md)
     - [CLI: Command Line Interface](2-aws-deep-dive/cli.md)
     - [SDK: Software Development Kit](2-aws-deep-dive/sdk.md)
     - [Elastic Beanstalk](2-aws-deep-dive/elastic-beanstalk.md)
