@@ -66,3 +66,38 @@
     - Ensure it has an IAM execution role with proper policy
 (AWSX-RayWriteOnlyAccess)
     - Ensure that X-Ray is imported in the code
+
+## X-Ray Instrumentation
+
+- Instrumentation means measure performance of a product, diagnose errors and write trace information
+- To instrument an application we can use the X-Ray SDK
+- Concepts:
+    - **Segments**: A segment records tracing information about a request that your application serves. At a minimum, a segment records the name, ID, start time, trace ID, and end time of the request
+    - **Subsegments**: More granularity for segments. We can create subsegments to record calls to AWS services and resources that we make with the AWS SDK, calls to internal or external HTTP web APIs, or SQL database queries. We can also create subsegments to debug or annotate blocks of code in our application. Subsegments can contain other subsegments, so a custom subsegment that records metadata about an internal function call can contain other custom subsegments and subsegments for downstream calls
+    - **Trace**: segments and subsegments collected together to form and end-to-end trace
+    - **Sampling**: decrease the amount of requests sent to X-Ray in order to reduce costs
+    - **Annotations**: key-value pairs added to index traces. This are very important if want our traces to be searchable or we want to filter them
+    - **Metadata**: key-value pairs which are not indexed, can not be used for searching and filtering
+
+### X-Ray Sampling Rules
+
+- They can be modified before changing code
+- By default X-Ray SDK records the first request in each second and 5% of additional requests
+- First request per second is called reservoir, ensures that at least 1 request is recorded each second if there is any request sent
+- Additional 5% is called the rate which is the amount of additional requests sampled beyond the reservoir size
+- Custom sampling rules:
+    - We can create our own custom sampling rules with reservoir and rate
+
+## X-Ray Write APIs
+
+- PutTraceSegments: upload a segment document to AWS X-Ray
+- PutTelemetryRecord: upload telemetry record to AWS X-Ray. Telemetry examples: SegmentsReceivedCount, SegmentRejectedCount, BackendConnectionErrors.
+- GetSamplingRules: retrieve all sampling rules (can be useful for X-Ray daemon to know when to sent segments)
+- GetSamplingTargets, GetSamplingStatisticSummaries
+
+## X-Ray Read APIs
+
+- GetServiceGraph: main graph
+- BatchGetTraces: retrieves a list of traces specified by IDs. Each trace is a collection of segment documents originating from a single request
+- GetTraceSummaries: retrieves the IDs and annotations for traces available for a specified amount of time frame using an optional filter. To get full traces, pass the trace id to BatchGetTraces API
+- GetTraceGraph: retrieves the service graph for one or more specific trace IDs
