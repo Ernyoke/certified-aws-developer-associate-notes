@@ -4,10 +4,10 @@
 - STS APIs:
     - **AssumeRole**: assume roles within our account or cross account
     - **AssumeRoleWithSAML**: return credentials for user logged in with SAML
-    - **AssumeRoleWithWebIdentity**: return credentials for user logged in with an identity proveder (Facebook, Google, other OIDC compatible)
-        - Deprectated: we should use Cognito Identiy Pool instead
+    - **AssumeRoleWithWebIdentity**: return credentials for user logged in with an identity provider (Facebook, Google, other OIDC compatible)
+        - Deprecated: we should use Cognito Identity Pool instead
     - **GetSessionToken**: used for MFA login with an user or AWS root account
-    - **GetFederationToke**: optain temporary token for federated user
+    - **GetFederationToke**: obtain temporary token for federated user
     - **GetCallerIdentity**: returns details about the IAM user or role used in the API call
     - **DecodeAuthorizationMessage**: decode error message when an AWS API is denied
 

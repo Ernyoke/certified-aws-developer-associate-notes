@@ -1,7 +1,7 @@
 # SSM Parameter Store
 
-- Used for securly storing configuration and secrets in AWS
-- It can have optoinal encryption using KMS
+- Used for securely storing configuration and secrets in AWS
+- It can have optional encryption using KMS
 - Serverless, scalable, durable, easy SDK
 - Version tracking of configurations and secrets
 - Configuration management using IAM policies
@@ -41,8 +41,8 @@
 
 ## Policies for Advanced Parameters
 
-- Allow asigning a TTL for a parameter to force updating or deleting sensitive data
-- We can assing multiple policies at a time
+- Allow assigning a TTL for a parameter to force updating or deleting sensitive data
+- We can assign multiple policies at a time
 
 ## SSM CLI
 
@@ -56,7 +56,7 @@
     aws ssm get-parameters --names /my-app/dev/db-url /my-app/dev/db-password --with-decryption
     ```
 
-- Get parameters by path: gets multiple parameters recoursively
+- Get parameters by path: gets multiple parameters recursively
     ```
-    aws ssm get-parameters-by-path --path /my-app/ --recoursive
+    aws ssm get-parameters-by-path --path /my-app/ --recursive
     ```

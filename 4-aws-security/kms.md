@@ -12,21 +12,21 @@
     - etc.
 - It can be used with the CLI/SDK
 
-## KMS - Customer Master Key (CMK) Typles
+## KMS - Customer Master Key (CMK) Types
 
-### Symetric (AES-256 keys)
+### Symmetric (AES-256 keys)
 
 - First offering of KMS
 - Single encryption key that is used to encrypt and decrypt data
-- Most of the services integrated with KMS use symetric keys
+- Most of the services integrated with KMS use symmetric keys
 - Necessary for envelope encryption
 - We never get access to the key unencrypted (must use the KMS API to decrypt data)
 
-### Asymetric (RSA and ECC key pairs)
+### Asymmetric (RSA and ECC key pairs)
 
 - Key pair: public key used for encryption. private key used for decryption
-- Used for encryption/decryption or sing/verifiy operations
-- Public key can be download, the acces for private key is impossible
+- Used for encryption/decryption or sing/verify operations
+- Public key can be download, the access for private key is impossible
 - Use case: encryption can be done outside of AWS using the public key, decryption can be done only in AWS with the private key
 
 ## KMS - Key Management System
@@ -46,10 +46,10 @@
     - We need to store DB passwords
     - We need to store credentials for external services
     - We need to store SSL certificates
-- The value of KMS is that CMK used uded to encrypt data can never be retrieved by the user. CMK can be rotated for extra security
+- The value of KMS is that CMK used used to encrypt data can never be retrieved by the user. CMK can be rotated for extra security
 - **We should never store secrets in plain text, especially in code!**
 - Secrets should be encrypted and then they can be stored in code/env. variables
-- KMS can opnly help in encrypting up to **4KB** of data per call
+- KMS can only help in encrypting up to **4KB** of data per call
 - In case of data larger than 4KB, we should use **envelope encryption**
 - KMS keys are bound to a specific region
 
@@ -59,20 +59,20 @@
 - Difference between S3 Bucket policies and KMS Key policies is that we can not control access without KMS Key policies
 - Default KMS Key policy:
     - Is automatically created if we don't prove a specific policy
-    - Gives complete acces to the key to the root user = entire AWS account
+    - Gives complete access to the key to the root user = entire AWS account
     - We should also give access to IAM policies to the KMS key
 - Custom KMS Key policies:
     - We define the user and the roles who can access the KMS key
     - We define who can administer the key
-    - It is usefull for cross-accounmt access to the KMS key
+    - It is useful for cross-account access to the KMS key
 
-## Cross account copying of snaphots
+## Cross account copying of snapshots
 
 1. When we create a snapshot, it will be encrypted with our CMK
 2. We should attach a KMS key policy to authorize cross-account access
 3. We share the encrypted snapshot
-4. In the target account we create a copy of the snaphot and we encrypt it with a KMS key from this account
-5. We create a volume from the snaphot
+4. In the target account we create a copy of the snapshot and we encrypt it with a KMS key from this account
+5. We create a volume from the snapshot
 
 ## KMS CLI
 
@@ -98,7 +98,7 @@
 2. KMS checks IAM permissions
 3. KMS sends back the plaintext data encryption key (DEK) and the encrypted data encryption key
 4. We encrypt the large data locally using the plaintext data key
-5. We build an envelope around the encrypted data. We put in the envelop the encrypted data key and the encrypyed data creating one final file
+5. We build an envelope around the encrypted data. We put in the envelop the encrypted data key and the encrypted data creating one final file
 
 ### Envelope decryption flow
 
@@ -115,13 +115,13 @@
 ### Data Key Caching
 
 - We can re-use data encryption keys instead of creating new ones
-- This helps with reducing the numner of API call to KMS but it has a security trade-off
-- If we are using data key caching, we shoul duse *LocalCryptoMaterialsCache* to indicate how bug this data cache should be. We can define max age, max bytes, max number of messages for our keys
+- This helps with reducing the number of API call to KMS but it has a security trade-off
+- If we are using data key caching, we should duse *LocalCryptoMaterialsCache* to indicate how bug this data cache should be. We can define max age, max bytes, max number of messages for our keys
 
-## KMS Symetric API Summary
+## KMS Symmetric API Summary
 
 - **Encrypt**: can encrypt data up to 4KB using KMS
-- **GenerateDataKey**: generates an unique symetric data encryption key (DEK)
+- **GenerateDataKey**: generates an unique symmetric data encryption key (DEK)
     - Returns both plaintext and encrypted versions for the data key
 - **GenerateDataKeyWithoutPlainText**: generates a DEK for future use. Must be decrypted when used (additional step)
 - **Decrypt**: can decrypt data up to 4KB using KMS
@@ -129,8 +129,8 @@
 
 ## KMS Request Quotas
 
-- When we exceted a request quota, we get a *ThrottlingException*
-- To mitigate this issue, we should use **exponential backoff**
+- When we exceed a request quota, we get a *ThrottlingException*
+- To mitigate this issue, we should use **exponential back-off**
 - For each cryptographic operations a single quota is shared per account
     - Including requests made by AWS on our behalf (ex: SSE-KMS)
 - To reduce throttling we can consider using DEK caching for envelope encryption

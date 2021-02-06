@@ -1,6 +1,6 @@
 # Advanced IAM
 
-## Authorizaiton Model Evaluation of Policies
+## Authorization Model Evaluation of Policies
 
 1. If there is an explicit DENY condition in the policy, end decision and DENY access
 2. If there is an ALLOW condition, end decision with ALLOW access
@@ -20,7 +20,7 @@
 - Example2:
     - IAM Role attached to EC2 instance, authorizes RW on "my_bucket"
     - S3 Bucket Policy explicitly denies the access from the IAM Role
-    - EC2 can not read adn write from the bucket, because explicit deny has higher priority then the expliced allow
+    - EC2 can not read and write from the bucket because explicit deny has higher priority then the explicit allow
 - Example3:
     - IAM Role attached to EC2 instance, no S3 bucket permissions
     - S3 Bucket Policy explicitly allows RW to the IAM Role
@@ -30,7 +30,7 @@
 
 - How do we assign each user a `/home/<user>` folder in S3 bucket?
 - Option 1:
-    - Create policies for each user, everytime we create an user we create a policy (DOES NOT SCALE!)
+    - Create policies for each user, every time we create an user we create a policy (DOES NOT SCALE!)
 - Option 2:
     - Create one dynamic policy with IAM
     - Leverage the special policy variable **${aws:username}**
