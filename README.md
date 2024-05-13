@@ -1,5 +1,10 @@
 # AWS Certified Developer – Associate (DVA-C01) Notes
 
+## WARNING
+
+The content of this repository is out of date with the current requirements for Certified Developer – Associate exam. Furthermore, certain notes contain information that is not accurate anymore.
+**Use this repository with discretion!**
+
 ## Table of contents
 
 - AWS Fundamentals
@@ -97,10 +102,3 @@
 # Credits
 
 - These notes are based on the [Ultimate AWS Certified Developer Associate 2021](https://www.udemy.com/course/aws-certified-developer-associate-dva-c01/) course by Stephane Maarek
-
-## My other AWS Certification Notes
-
-- [AWS Certified Solutions Architect – Associate (SAA-C02)](https://github.com/Ernyoke/certified-aws-solutions-architect-associate)
-- [AWS Certified SysOps – Associate (SOA-C01)](https://github.com/Ernyoke/certified-aws-sysops-associate)
-- [AWS Certified DevOps Engineer – Professional (DOP-C01)](https://github.com/Ernyoke/certified-aws-devops-professional)
-- [AWS Certified Solutions Architect – Professional (SAP-C01)](https://github.com/Ernyoke/certified-aws-solutions-architect-professional)
